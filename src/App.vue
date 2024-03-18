@@ -44,6 +44,7 @@ import Beverage from "./components/Beverage.vue";
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");
+
 const Creamers = ref(["Milk", "Cream", "Half & Half"])
 const currentCreamer = ref("Milk");
 

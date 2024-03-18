@@ -30,6 +30,7 @@ const Creamers: Creamer[] = [
 
 const props = withDefaults(defineProps<Prop>(), {
   name: "Milk",
+
 });
 </script>
 <style lang="scss" scoped>

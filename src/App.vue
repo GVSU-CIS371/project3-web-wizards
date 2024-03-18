@@ -18,6 +18,24 @@
       </li>
     </ul>
   </div>
+  <div>
+    <ul>
+      <li>
+        <template v-for="milk in Creamers" :key="milk">
+          <label>
+            <input
+              type="radio"
+              name="Creamer"
+              :id="`r${milk}`"
+              :value="milk"
+              v-model="currentCreamer"
+            />
+            {{ milk }}
+          </label>
+        </template>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +44,10 @@ import Beverage from "./components/Beverage.vue";
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");
+const Creamers = ref(["Milk", "Cream", "Half & Half"])
+const currentCreamer = ref("Milk");
+
+
 </script>
 
 <style lang="scss">

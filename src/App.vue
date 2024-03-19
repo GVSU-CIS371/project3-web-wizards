@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Beverage :isIced="currentTemp === 'Cold'" />
+    <Beverage :isIced="currentTemp === 'Cold'"  :creamer="currentCreamer"/>
     <ul>
       <li>
         <template v-for="temp in temps" :key="temp">
@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Beverage from "./components/Beverage.vue";
+
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");

@@ -4,7 +4,7 @@
     <Hot v-else />
     <Contents>
       <template v-slot:top>
-        <Creamer currentCreamer = 'Milk'/>
+        <Creamer :name = 'creamer'/>
       </template>
       <template v-slot:mid>
         <Syrup />

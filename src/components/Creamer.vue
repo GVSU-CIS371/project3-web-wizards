@@ -1,6 +1,6 @@
 <template>
-  <div class="froth" :style="customStyle">
-    <div v-for=" in 5" class="foam"></div>
+  <div class="froth" >
+    <div v-for=" in 5" class="foam" :style="customStyle"></div>
   </div>
 </template>
 
@@ -39,7 +39,6 @@ const customStyle = computed(() => {
         backgroundColor: creamer?.color,
     };
 });
-
 </script>
 <style lang="scss" scoped>
 .froth {

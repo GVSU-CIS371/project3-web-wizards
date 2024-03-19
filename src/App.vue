@@ -1,6 +1,10 @@
 <template>
   <div>
+<<<<<<< HEAD
     <Beverage :isIced="currentTemp === 'Cold'" :creamer="currentCreamer" :syrup="currentSyrup" :beverage="currentBaseBeverage" />
+=======
+    <Beverage :isIced="currentTemp === 'Cold'"  :creamer="currentCreamer"/>
+>>>>>>> bb8c9dbcadc025ed0e80eff67004fb3bbbb60d93
     <ul>
       <li>
         <strong> Temperature: </strong>
@@ -81,6 +85,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Beverage from "./components/Beverage.vue";
+
 // Define reactive data
 const temps = ref(["Hot", "Cold"]);
 const currentTemp = ref("Hot");

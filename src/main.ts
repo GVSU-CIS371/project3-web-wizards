@@ -3,18 +3,15 @@ import './styles/mug.scss'
 import App from './App.vue'
 
 createApp(App).mount('#app')
+App.use(createPinia());
 
-import createPinia from "pinia";
+import {createPinia} from "pinia";
 import {defineStore} from "pinia";
 
-export const useStore = defineStore("choiceStore", {
+export const useStore = defineStore("useDrinks", {
   state: () => {
     return {
-      drinkname: "",
-      isCold: "",
-      creamer: "",
-      syrup: "",
-      base: "",
+    drinknames: []
     };
   }
 })

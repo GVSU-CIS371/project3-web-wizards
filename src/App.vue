@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <Beverage :isIced="currentTemp === 'Cold'" :creamer="currentCreamer" :syrup="currentSyrup" :beverage="currentBaseBeverage" />
     <ul>
       <li>
@@ -95,6 +94,28 @@ const currentSyrup = ref("None")
 
 const baseBeverage = ref(["Coffee", "Green Tea", "Black Tea"])
 const currentBaseBeverage = ref("Coffee")
+
+// pinia setup
+import { createApp } from "vue";
+import App from "./App.vue";
+import createPinia from "pinia";
+import {defineStore} from "pinia";
+
+createApp(App)
+  .use(createPinia())
+  .mount("#app");
+
+export const useStore = defineStore("choiceStore", {
+  state: () => {
+    return {
+      drinkname: "",
+      isCold: "",
+      creamer: "",
+      syrup: "",
+      base: "",
+    };
+  }
+})
 
 
 </script>

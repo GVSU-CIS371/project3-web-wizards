@@ -1,6 +1,6 @@
 <template>
   <div>
-
+<<<<<<< HEAD
     <Beverage :isIced="currentTemp === 'Cold'" :creamer="currentCreamer" :syrup="currentSyrup" :beverage="currentBaseBeverage" />
     <ul>
       <li>

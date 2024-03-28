@@ -40,6 +40,16 @@
       </li>
     </ul>
   </div>
+  <input type="text" v-model="drinkName" placeholder="Enter drink name">
+  <button @click="addDrink">Add Drink</button>
+  <div>
+    <h2>Created Drinks:</h2>
+    <ul>
+      <li v-for="(drink, index) in drinks" :key="index">
+        {{ drink.drinkName }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 
@@ -60,23 +70,25 @@ const currentSyrup = ref("None")
 const baseBeverage = ref(["Coffee", "Green Tea", "Black Tea"])
 const currentBaseBeverage = ref("Coffee")
 
-// import { useStore } from "./main";
-// const drinkStore = useStore();
-// const addtodrinkStore = (drinkName, temp, base, creamer, syrup) => {
+const drinkName = ref("");
+const drinks = useStore().drinks
 
-//   const newDrink = {
-//     drinkName,
-//     isIced: temp === 'Cold',
-//     base,
-//     creamer,
-//     syrup
-//   };
+import { useStore } from "./main.ts";
+const drinkStore = useStore();
+const addDrink = () => {
+  const newDrink = {
+    drinkName: drinkName.value,
+    isIced: currentTemp.value === 'Cold',
+    base: currentBaseBeverage.value,
+    creamer: currentCreamer.value,
+    syrup: currentSyrup.value
+  };
 
-//   drinkStore.$patch((state) => {
-//     state.drinks.push(newDrink);
-//   });
-// };
-// </script>
+  drinkStore.$patch((state) => {
+    state.drinks.push(newDrink);
+  });
+};
+</script>
 
 <style lang="scss">
 body,

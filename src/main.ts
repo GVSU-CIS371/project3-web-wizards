@@ -11,7 +11,11 @@ import {defineStore} from "pinia";
 export const useStore = defineStore("useDrinks", {
   state: () => {
     return {
-    drinknames: []
+      drinkName: "",
+      temps: "",
+      base: "",
+      creamer: "",
+      syrup: ""
     };
   }
 })

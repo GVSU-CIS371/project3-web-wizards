@@ -8,14 +8,18 @@ App.use(createPinia());
 import {createPinia} from "pinia";
 import {defineStore} from "pinia";
 
+type Drink = {
+  drinkName: string,
+  isIced: boolean,
+  creamer: string,
+  syrup: string,
+  base: string
+}
+
 export const useStore = defineStore("useDrinks", {
   state: () => {
     return {
-      drinkName: "",
-      temps: "",
-      base: "",
-      creamer: "",
-      syrup: ""
+      drinks: Array<Drink>
     };
   }
 })

@@ -95,18 +95,22 @@ const currentSyrup = ref("None")
 const baseBeverage = ref(["Coffee", "Green Tea", "Black Tea"])
 const currentBaseBeverage = ref("Coffee")
 
-// import { useStore } from "./main";
-// const drinkStore = useStore();
-// const addtodrinkStore = (name, temp, base, creamer, syrup) => {
-//   // Utilize the $patch method to add items into cart.
-//   drinkStore.$patch {(
-//  drinkName: currName
-//  temps: currentTemp
-//  base: currentBaseBeverage
-//  creamer: currentCreamer
-//  syrup: currentSyrup
-// )};
+import { useStore } from "./main";
+const drinkStore = useStore();
+const addtodrinkStore = (drinkName, temp, base, creamer, syrup) => {
 
+  const newDrink = {
+    drinkName,
+    isIced: temp === 'Cold',
+    base,
+    creamer,
+    syrup
+  };
+
+  drinkStore.$patch((state) => {
+    state.drinks.push(newDrink);
+  });
+};
 </script>
 
 <style lang="scss">

@@ -1,55 +1,56 @@
 <template>
   <div>
-    <Beverage :isIced="currentTemp === 'Cold'" :creamer="currentCreamer" :syrup="currentSyrup" :beverage="currentBaseBeverage" />
-    <ul>
-      <li>
-        <strong>Temperature:</strong>
-        <select v-model="currentTemp">
-          <option v-for="temp in temps" :key="temp" :value="temp">{{ temp }}</option>
-        </select>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <ul>
-      <li>
-        <strong>Creamer:</strong>
-        <select v-model="currentCreamer">
-          <option v-for="milk in Creamers" :key="milk" :value="milk">{{ milk }}</option>
-        </select>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <ul>
-      <li>
-        <strong>Syrup:</strong>
-        <select v-model="currentSyrup">
-          <option v-for="syrup in Syrup" :key="syrup" :value="syrup">{{ syrup }}</option>
-        </select>
-      </li>
-    </ul>
-  </div>
-  <div>
-    <ul>
-      <li>
-        <strong>Base Beverage:</strong>
-        <select v-model="currentBaseBeverage">
-          <option v-for="beverage in baseBeverage" :key="beverage" :value="beverage">{{ beverage }}</option>
-        </select>
-      </li>
-    </ul>
-  </div>
-  <input type="text" v-model="drinkName" placeholder="Enter drink name">
-  <button @click="addDrink">Add Drink</button>
-  <div>
-    <h2>Created Drinks:</h2>
-    <ul>
-      <li v-for="(drink, index) in drinks" :key="index">
-        {{ drink.drinkName }}
-      </li>
-    </ul>
-  </div>
+      <Beverage :isIced="currentTemp === 'Cold'" :creamer="currentCreamer" :syrup="currentSyrup" :beverage="currentBaseBeverage" />
+      <ul>
+        <li>
+          <strong>Temperature:</strong>
+          <select v-model="currentTemp">
+            <option v-for="temp in temps" :key="temp" :value="temp">{{ temp }}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <strong>Creamer:</strong>
+          <select v-model="currentCreamer">
+            <option v-for="milk in Creamers" :key="milk" :value="milk">{{ milk }}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <strong>Syrup:</strong>
+          <select v-model="currentSyrup">
+            <option v-for="syrup in Syrup" :key="syrup" :value="syrup">{{ syrup }}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <strong>Base Beverage:</strong>
+          <select v-model="currentBaseBeverage">
+            <option v-for="beverage in baseBeverage" :key="beverage" :value="beverage">{{ beverage }}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <input type="text" v-model="drinkName" placeholder="Enter drink name">
+    <button @click="addDrink">Add Drink</button>
+    <div>
+      <h2>Created Drinks:</h2>
+      <ul>
+        <li v-for="(drink, index) in drinks" :key="index">
+          {{ drink.drinkName }}
+          <button @click="() => selectDrink(drink)">Select</button>
+        </li>
+      </ul>
+    </div>
 </template>
 
 
@@ -74,20 +75,27 @@ const drinkName = ref("");
 const drinks = useStore().drinks
 
 import { useStore } from "./main.ts";
-const drinkStore = useStore();
-const addDrink = () => {
-  const newDrink = {
+const drinkStore = useStore(); // Store that stores drinks
+
+function addDrink() { // Function that adds drinks to the store
+  const newDrink: Drink = {
     drinkName: drinkName.value,
     isIced: currentTemp.value === 'Cold',
     base: currentBaseBeverage.value,
     creamer: currentCreamer.value,
     syrup: currentSyrup.value
   };
-
   drinkStore.$patch((state) => {
     state.drinks.push(newDrink);
   });
 };
+
+function selectDrink(drink: Drink) {
+  currentTemp.value = drink.temp;
+  currentBaseBeverage.value = drink.base;
+  currentCreamer.value = drink.creamer;
+  currentSyrup.value = drink.syrup;
+}
 </script>
 
 <style lang="scss">

@@ -90,8 +90,10 @@ function addDrink() { // Function that adds drinks to the store
   });
 };
 
+import { Drink } from "./main.ts"; // Import the Drink type from the appropriate location
+
 function selectDrink(drink: Drink) {
-  currentTemp.value = drink.temp;
+  currentTemp.value = drink.isIced ? 'Cold' : 'Hot';
   currentBaseBeverage.value = drink.base;
   currentCreamer.value = drink.creamer;
   currentSyrup.value = drink.syrup;
